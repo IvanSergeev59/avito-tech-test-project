@@ -29,10 +29,8 @@ const Images = () => {
 
     
     return (
-        <div className="images"> 
-           
-            <ImagesContainer />
-                       
+        <div className="images">            
+            <ImagesContainer />                       
         </div>
     )
 }

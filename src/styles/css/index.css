@@ -115,6 +115,64 @@ ul {
   margin-bottom: 11px;
 }
 
+._form_input {
+  background: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 3px;
+  height: 30px;
+  margin: 0px;
+  margin-bottom: 20px;
+  padding: 0px;
+}
+
+._form_input input {
+  border: 0px;
+  width: 97%;
+  padding: 0px;
+  margin-left: 3%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  outline: none;
+}
+
+._form_submit {
+  width: 100%;
+  background: #4997D0;
+  border-radius: 3px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  border: 0px;
+  height: 30px;
+}
+
+._left-side_form {
+  width: 100%;
+  margin-top: 29px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 ._left-side {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -126,7 +184,6 @@ ul {
           flex-direction: column;
   margin-left: 4.84%;
   margin-top: 30px;
-  margin-right: 2%;
 }
 
 ._comment_date {
@@ -176,8 +233,17 @@ ul {
 }
 
 ._right-side {
-  margin-right: 5%;
   margin-top: 30px;
+}
+
+._modalWindow_close {
+  margin-top: 21px;
+  margin-right: 21px;
+}
+
+._modalWindow_close img {
+  width: 18px !important;
+  height: 18px !important;
 }
 
 .modalWindow {
@@ -196,12 +262,45 @@ ul {
   background: white;
   z-index: 1;
   border: 1px solid black;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .modalWindow img {
   width: 331px;
   height: 205px;
   z-index: 1.5;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #cef;
+  border-color: #cef transparent #cef transparent;
+  -webkit-animation: lds-dual-ring 1.2s linear infinite;
+          animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 #root {

@@ -2,7 +2,7 @@ import React, {useReducer} from "react";
 import { ImagesContext } from './imagesContext';
 import axios from 'axios';
 import {imagesReducer} from './imagesReducer';
-import {FETCH_IMAGES, FETCH_MODAL_IMAGE} from '../types';
+import {FETCH_IMAGES, FETCH_MODAL_IMAGE, CLOSE_MODAL_WINDOW} from '../types';
 
 
 
@@ -11,8 +11,10 @@ export const ImagesState = ({children}) => {
     baseUrl: 'https://boiling-refuge-66454.herokuapp.com/images',
     images:[],
     loading: true,
-    modalImage:'https://picsum.photos/id/237/600/400',
-    modalDisplay: false
+    modalImage:'',
+    modalComments:[],
+    modalDisplay: false,
+    modalLoading: true
 }
 
     const [state, dispatch] = useReducer (imagesReducer, initialState); 
@@ -30,14 +32,19 @@ export const ImagesState = ({children}) => {
         const {baseUrl} = initialState;
         axios.get(`${baseUrl}/${id}`)
         .then((res) => {
-            let image = res.data.url;
+            let image = {
+                url: res.data.url,
+                comments: res.data.comments
+            };
             dispatch(({type: FETCH_MODAL_IMAGE, payload: image}))
         })
     }
 
-    const {images, loading, modalImage, modalDisplay} = state
+    const closeModalWindow = () => {dispatch(({type: CLOSE_MODAL_WINDOW}))}
+
+    const {images, loading, modalImage, modalDisplay, modalComments, modalLoading} = state
     return (
-        <ImagesContext.Provider value={{fetchImages, fetchModalImage, modalImage, modalDisplay, images, loading}}>
+        <ImagesContext.Provider value={{fetchImages, closeModalWindow, fetchModalImage, modalImage, modalDisplay, images, loading, modalComments, modalLoading}}>
             {children}
         </ImagesContext.Provider>
     )

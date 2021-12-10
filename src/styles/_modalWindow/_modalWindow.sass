@@ -1,5 +1,6 @@
 @import "_left-side/_left-side.sass"
 @import "_right-side/_right-side.sass"
+@import "_close/_modalWindow_close.sass"
     
 .modalWindow
     display: flex
@@ -15,9 +16,34 @@
     background: white
     z-index: 1
     border: 1px solid black
+    justify-content: space-between
 
 .modalWindow img 
     width: 331px
     height: 205px
     z-index: 1.5
 
+
+.lds-dual-ring 
+    display: inline-block
+    width: 80px
+    height: 80px
+
+.lds-dual-ring:after 
+    content: " "
+    display: block
+    width: 64px
+    height: 64px
+    margin: 8px
+    border-radius: 50%
+    border: 6px solid #cef
+    border-color: #cef transparent #cef transparent;
+    animation: lds-dual-ring 1.2s linear infinite
+
+@keyframes lds-dual-ring 
+    0% 
+        transform: rotate(0deg)
+  
+    100% 
+        transform: rotate(360deg)
+  
