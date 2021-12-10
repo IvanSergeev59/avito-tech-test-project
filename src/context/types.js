@@ -1,0 +1,2 @@
+export const FETCH_IMAGES= 'FETCH_IMAGES';
+export const FETCH_MODAL_IMAGE= 'FETCH_MODAL_IMAGE';
