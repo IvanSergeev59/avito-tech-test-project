@@ -18,28 +18,46 @@ const ModalWindow = () => {
     //useEffect of overlay winodw (show or hide)
     const [valueError, setValueError] = useState('');
 
+    const setDefaultFormsValue = (valueForm) => {
+        valueForm.userName.value = '';
+        valueForm.userComment.value = '';
+    }
+
+    const setErrorText= () => {
+        setValueError(<p className="_red-form">Заполните оба поля</p>)
+    }
+
+    let comments = {};
+    const getComments = (valueForm) => {
+        comments = {date: valueForm.userName.value, text: valueForm.userComment.value}
+        if (comments.date.length>0 && comments.text.length>0) return true
+    }
+
     // submit button
     const onClickSubmit = (event) => {
         event.preventDefault();       
-        const valueForm = event.target.parentNode.elements;
-        // get values
-        let comments = {date: valueForm.userName.value, text: valueForm.userComment.value}; 
+        const valueForm = event.target.parentNode.elements;     
+        
         // check length of inputs
-        if (comments.date.length>0 && comments.text.length>0) {
+        if(getComments(valueForm)){
             addCommentToImage(comments);
             setValueError('')
-            valueForm.userName.value = '';
-            valueForm.userComment.value = '';
-            
+            setDefaultFormsValue(valueForm)           
         }
-        
-        else {setValueError(<p className="_red-form">Заполните оба поля</p>);}
+        else setErrorText()
+    }
+    
+    const onChangeInputs = (event) => {
+        const valueForm = event.target.parentNode.parentNode.elements;    
+        if(getComments(valueForm)){ 
+           setValueError('')
+        } 
+        else setErrorText() 
     }
     
     const CommentsCointainer = () => {
         return (            
-                modalComments.map(item => { return (
-                    
+                modalComments.map(item => { return (                    
                         <div className="_right-side_comment" key={item.id}>
                             <p className="_comment_date" >{item.date}</p>
                             <p className="_comment_text">{item.text}</p>
@@ -49,11 +67,12 @@ const ModalWindow = () => {
     }
 
     const ModalError = () => {
-        if(modalError) {
-            console.log('error')
-            return  <p>Ошибка загрузки</p>
-        }
-        else return null
+        return (
+            <div>
+            {modalError &&  <p>Ошибка загрузки</p>}
+            </div>
+        )
+       
     }
 
     return (           
@@ -71,8 +90,8 @@ const ModalWindow = () => {
                         <CommentsCointainer />  
                         </div>
                         <form className="_left-side_form">
-                            <p className="_form_input"><input placeholder="Ваше имя" name="userName"></input></p>
-                            <p className="_form_input"><input placeholder="Ваш комментарий" name="userComment"></input></p>
+                            <p className="_form_input"><input placeholder="Ваше имя" name="userName" onChange={onChangeInputs}></input></p>
+                            <p className="_form_input"><input placeholder="Ваш комментарий" name="userComment" onChange={onChangeInputs}></input></p>
                             {valueError}
                             <input type="submit" className="_form_submit" onClick={onClickSubmit} disable="true" value="Оставить комментарий "></input>
                         </form>                   
