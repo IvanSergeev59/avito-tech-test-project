@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/avito-tech-test-project/static/css/main.a7d84c77.chunk.css",
-    "main.js": "/avito-tech-test-project/static/js/main.e536b76f.chunk.js",
-    "main.js.map": "/avito-tech-test-project/static/js/main.e536b76f.chunk.js.map",
+    "main.css": "/avito-tech-test-project/static/css/main.e827bf3a.chunk.css",
+    "main.js": "/avito-tech-test-project/static/js/main.b617e52e.chunk.js",
+    "main.js.map": "/avito-tech-test-project/static/js/main.b617e52e.chunk.js.map",
     "runtime-main.js": "/avito-tech-test-project/static/js/runtime-main.3d5b6c58.js",
     "runtime-main.js.map": "/avito-tech-test-project/static/js/runtime-main.3d5b6c58.js.map",
     "static/js/2.a590841e.chunk.js": "/avito-tech-test-project/static/js/2.a590841e.chunk.js",
     "static/js/2.a590841e.chunk.js.map": "/avito-tech-test-project/static/js/2.a590841e.chunk.js.map",
     "index.html": "/avito-tech-test-project/index.html",
-    "static/css/main.a7d84c77.chunk.css.map": "/avito-tech-test-project/static/css/main.a7d84c77.chunk.css.map",
+    "static/css/main.e827bf3a.chunk.css.map": "/avito-tech-test-project/static/css/main.e827bf3a.chunk.css.map",
     "static/js/2.a590841e.chunk.js.LICENSE.txt": "/avito-tech-test-project/static/js/2.a590841e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.3d5b6c58.js",
     "static/js/2.a590841e.chunk.js",
-    "static/css/main.a7d84c77.chunk.css",
-    "static/js/main.e536b76f.chunk.js"
+    "static/css/main.e827bf3a.chunk.css",
+    "static/js/main.b617e52e.chunk.js"
   ]
 }
