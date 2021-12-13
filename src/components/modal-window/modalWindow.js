@@ -4,16 +4,23 @@ import close from '../../images/close.png';
 
 const ModalWindow = () => {
     const {modalImage, modalDisplay, closeModalWindow, modalComments, modalLoading, addCommentToImage, modalError, changeOverlayStatus} = useContext(ImagesContext);
+
+    //user click on close button
     const onCloseButton = () => {
         closeModalWindow();
         changeOverlayStatus('overlay-hide');
     }
 
+    //useEffect of overlay winodw (show or hide)
     const [valueError, setValueError] = useState('');
+
+    // submit button
     const onClickSubmit = (event) => {
         event.preventDefault();       
         const valueForm = event.target.parentNode.elements;
-        let comments = {date: valueForm.userName.value, text: valueForm.userComment.value};  
+        // get values
+        let comments = {date: valueForm.userName.value, text: valueForm.userComment.value}; 
+        // check length of inputs
         if (comments.date.length>0 && comments.text.length>0) {
             addCommentToImage(comments);
             setValueError('')
@@ -21,8 +28,9 @@ const ModalWindow = () => {
             valueForm.userComment.value = '';
             
         }
+        
         else {setValueError(<p className="_red-form">Заполните оба поля</p>);}
-       }
+    }
     
     const CommentsCointainer = () => {
         return (            
@@ -36,39 +44,41 @@ const ModalWindow = () => {
         )
     }
 
+    const ModalError = () => {
+        if(modalError) {
+            console.log('error')
+            return  <p>Ошибка загрузки</p>
+        }
+        else return null
+    }
+
     return (           
-            <React.Fragment>
-                {modalError ?
-                    <p>Ошибка загрузки</p>
-                    :
-                    <div>
-                        {modalDisplay ?
-                            <div className="modalWindow">
-                                <div className="_left-side">
-                                    {modalLoading
-                                    ?
-                                    <div className="lds-dual-ring"></div>
-                                    : <img src={modalImage} alt="big"/>  
-                                    }
-                                    <form className="_left-side_form">
-                                        <p className="_form_input"><input placeholder="Ваше имя" name="userName"></input></p>
-                                        <p className="_form_input"><input placeholder="Ваш комментарий" name="userComment"></input></p>
-                                        {valueError}
-                                        <input type="submit" className="_form_submit" onClick={onClickSubmit} disable="true" value="Оставить комментарий "></input>
-                                    </form> 
-                                </div>
-                                <div className="_right-side">
-                                    <CommentsCointainer />  
-                                </div>
-                                <div className="_modalWindow_close" onClick={onCloseButton}>
-                                    <img src={close}   alt="close" />
-                                </div>
-                                
-                            </div> 
-                        :null}
+        <React.Fragment>                                            
+            {modalDisplay ?                            
+                <div className="modalWindow">
+                    <div className="_left-side">
+                        <ModalError />
+                        {modalLoading || modalError
+                        ?
+                            <div className="lds-dual-ring"></div>
+                        : <img src={modalImage} alt="big"/>  
+                        }
+                         <div className="_right-side">
+                        <CommentsCointainer />  
+                        </div>
+                        <form className="_left-side_form">
+                            <p className="_form_input"><input placeholder="Ваше имя" name="userName"></input></p>
+                            <p className="_form_input"><input placeholder="Ваш комментарий" name="userComment"></input></p>
+                            {valueError}
+                            <input type="submit" className="_form_submit" onClick={onClickSubmit} disable="true" value="Оставить комментарий "></input>
+                        </form>                   
                     </div>
-                }
-            </React.Fragment>
+                    <div className="_modalWindow_close" onClick={onCloseButton}>
+                        <img src={close}   alt="close" />
+                    </div>                                
+                </div> 
+            :null}  
+        </React.Fragment>
         
     )
 }

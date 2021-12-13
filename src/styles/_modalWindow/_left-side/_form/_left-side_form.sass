@@ -1,8 +1,7 @@
 @import "_input/_form_input.sass"
 @import "_submit/_form_submit.sass"
 ._left-side_form
-    width: 100%
-    margin-top: 29px
+    width: 205px    
     display: flex
     position: relative
     flex-direction: column    
@@ -11,3 +10,9 @@
     color: red
     margin-top: -13px
     margin-bottom: 10px
+
+@media (max-width:768px) 
+    ._left-side_form
+        width: 276px
+        margin: 0 auto
+        margin-top: 40px

@@ -3,42 +3,50 @@ import { ImagesContext } from "../../context/images/imagesContext";
 
 const Images = () => {
     const {fetchImages, fetchModalImage, images, loading, closeModalWindow, overlayStatus, changeOverlayStatus} = useContext(ImagesContext);
-        useEffect(() => {
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            fetchImages()}, [] );
 
+    // loading images from server 
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        fetchImages()}, [] );
+
+    // user clicked at overlay window
     const onOverlayClick = () => {
         closeModalWindow();
         changeOverlayStatus('overlay-hide');
     }
             
+    // overlay component
     const Overlay = () => {
         return (
         <div className={`overlay ${overlayStatus}`} onClick={onOverlayClick}>
         </div>
         )
     }
-    const ImagesContainer = () => {   
+
+    // container with images
+    const ImagesContainer = () => { 
+         
         const onImgClick = (event) => {
             fetchModalImage(event.target.id);
-            changeOverlayStatus('overlay-show')
+            changeOverlayStatus('overlay-show');
 
-        }      
+        } 
+
         const Image = () => {return ( images.map (                
                 item => <li onClick={onImgClick} key={item.id}>
-                <img id={item.id} alt="img"  src={item.url}/>
+                <img id={item.id} alt=""  src={item.url}/>
                 </li>
-            )  )}
-            return ( 
-                <ul>{loading ? <Loading /> : <Image /> }</ul>          
-            )          
+        ))}
+            
+        return ( 
+            <ul>{loading ? <Loading /> : <Image /> }</ul>          
+        )          
     }
 
+    // loader
     const Loading = () => {
         return <div className="lds-dual-ring"></div>
     }
-    
-
     
     return (
         <div className="images">       

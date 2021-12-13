@@ -2,7 +2,12 @@
 ._left-side
     display: flex
     position: relative
-    flex-direction: column
+    flex-direction: row
+    flex-wrap: wrap
     margin-left: 4.84%
     margin-top: 30px
     
+@media (max-width:768px) 
+    ._left-side
+        max-width: 320px
+        margin: 0 auto
