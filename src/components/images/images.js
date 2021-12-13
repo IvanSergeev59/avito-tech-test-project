@@ -13,6 +13,7 @@ const Images = () => {
     const onOverlayClick = () => {
         closeModalWindow();
         changeOverlayStatus('overlay-hide');
+        document.getElementsByName('body')[0].classList.toggle('hystmodal__opened');
     }
             
     // overlay component
@@ -28,8 +29,8 @@ const Images = () => {
          
         const onImgClick = (event) => {
             fetchModalImage(event.target.id);
+            document.getElementsByName('body')[0].classList.toggle('hystmodal__opened');
             changeOverlayStatus('overlay-show');
-
         } 
 
         const Image = () => {return ( images.map (                

@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import { ImagesContext } from "../../context/images/imagesContext";
 import close from '../../images/close.png';
+import Header from "../header";
+import Images from "../images";
+import Footer from "../footer/footer";
 
 const ModalWindow = () => {
     const {modalImage, modalDisplay, closeModalWindow, modalComments, modalLoading, addCommentToImage, modalError, changeOverlayStatus} = useContext(ImagesContext);
@@ -9,6 +12,7 @@ const ModalWindow = () => {
     const onCloseButton = () => {
         closeModalWindow();
         changeOverlayStatus('overlay-hide');
+        document.getElementsByName('body')[0].classList.toggle('hystmodal__opened');
     }
 
     //useEffect of overlay winodw (show or hide)
@@ -78,6 +82,9 @@ const ModalWindow = () => {
                     </div>                                
                 </div> 
             :null}  
+            <Header />
+            <Images />        
+            <Footer />
         </React.Fragment>
         
     )
