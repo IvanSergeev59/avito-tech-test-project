@@ -1,15 +1,30 @@
-import React, { useContext, useEffect }  from "react";
+import React, { useContext, useEffect, useState }  from "react";
 import { ImagesContext } from "../../context/images/imagesContext";
 
 const Images = () => {
-    const {fetchImages, fetchModalImage, images, loading} = useContext(ImagesContext);
+    const {fetchImages, fetchModalImage, images, loading, closeModalWindow} = useContext(ImagesContext);
         useEffect(() => {
             // eslint-disable-next-line react-hooks/exhaustive-deps
-            fetchImages()}, [] ); 
+            fetchImages()}, [] );
             
+    const [overlayHideOrShow, setOverlay] = useState('overlay-hide');
+
+    const onOverlayClick = () => {
+        closeModalWindow();
+        setOverlay('overlay-hide');
+    }
+            
+    const Overlay = () => {
+        return (
+        <div className={`overlay ${overlayHideOrShow}`} onClick={onOverlayClick}>
+        </div>
+        )
+    }
     const ImagesContainer = () => {   
         const onImgClick = (event) => {
-            fetchModalImage(event.target.id)
+            fetchModalImage(event.target.id);
+            setOverlay('overlay-show')
+
         }      
         const Image = () => {return ( images.map (
                 
@@ -29,7 +44,8 @@ const Images = () => {
 
     
     return (
-        <div className="images">            
+        <div className="images">       
+            <Overlay />     
             <ImagesContainer />                       
         </div>
     )
