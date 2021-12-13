@@ -3,9 +3,10 @@ import { ImagesContext } from "../../context/images/imagesContext";
 import close from '../../images/close.png';
 
 const ModalWindow = () => {
-    const {modalImage, modalDisplay, closeModalWindow, modalComments, modalLoading, addCommentToImage, modalError} = useContext(ImagesContext);
+    const {modalImage, modalDisplay, closeModalWindow, modalComments, modalLoading, addCommentToImage, modalError, changeOverlayStatus} = useContext(ImagesContext);
     const onCloseButton = () => {
-        closeModalWindow()
+        closeModalWindow();
+        changeOverlayStatus('overlay-hide');
     }
 
     const [valueError, setValueError] = useState('');
